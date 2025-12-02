@@ -1,0 +1,39 @@
+artifact_path: random_forest_model
+databricks_runtime: client.2.5-aarch64-scala2.12
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.11.10
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.3.0
+mlflow_version: 2.11.4
+model_size_bytes: 19976194
+model_uuid: b3e12299737c4e259d8c018ea8d5fc07
+run_id: cb5dd6a53f384cceabbdd8041792adc5
+signature:
+  inputs: '[{"type": "long", "name": "gender", "required": true}, {"type": "long",
+    "name": "SeniorCitizen", "required": true}, {"type": "long", "name": "Partner",
+    "required": true}, {"type": "long", "name": "Dependents", "required": true}, {"type":
+    "long", "name": "tenure", "required": true}, {"type": "long", "name": "PhoneService",
+    "required": true}, {"type": "long", "name": "MultipleLines", "required": true},
+    {"type": "long", "name": "InternetService", "required": true}, {"type": "long",
+    "name": "OnlineSecurity", "required": true}, {"type": "long", "name": "OnlineBackup",
+    "required": true}, {"type": "long", "name": "DeviceProtection", "required": true},
+    {"type": "long", "name": "TechSupport", "required": true}, {"type": "long", "name":
+    "StreamingTV", "required": true}, {"type": "long", "name": "StreamingMovies",
+    "required": true}, {"type": "long", "name": "Contract", "required": true}, {"type":
+    "long", "name": "PaperlessBilling", "required": true}, {"type": "long", "name":
+    "PaymentMethod", "required": true}, {"type": "float", "name": "MonthlyCharges",
+    "required": true}, {"type": "float", "name": "TotalCharges", "required": true}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1,
+    2]}}]'
+  params: null
+utc_time_created: '2025-12-01 15:43:28.058546'

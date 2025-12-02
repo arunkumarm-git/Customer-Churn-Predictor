@@ -1,0 +1,36 @@
+# 1. The Deployment (Manages the Model Replicas)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: churn-model-deployment
+spec:
+  replicas: 1  # How many copies of the model do you want?
+  selector:
+    matchLabels:
+      app: churn-model
+  template:
+    metadata:
+      labels:
+        app: churn-model
+    spec:
+      containers:
+      - name: churn-api-container
+        image: customer-churn-api:v3  
+        imagePullPolicy: Never        # IMPORTANT: Tells K8s "Don't look on the internet, use local image"
+        ports:
+        - containerPort: 5000
+
+---
+# 2. The Service (The "Receptionist" that directs traffic)
+apiVersion: v1
+kind: Service
+metadata:
+  name: churn-service
+spec:
+  type: NodePort  # Exposes the service to the outside world
+  selector:
+    app: churn-model
+  ports:
+    - port: 5000       # Port the Service listens on
+      targetPort: 5000 # Port the Container is listening on
+      nodePort: 30005  # The specific port on the Minikube IP (30000-32767)
